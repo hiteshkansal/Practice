@@ -1,4 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<session version="1.0">
-<refactoring comment="Rename local variable &apos;temp&apos; in &apos;com.test.BirthdayParadox.main(...)&apos; to &apos;bdayDate&apos;&#x0D;&#x0A;- Original project: &apos;Demo&apos;&#x0D;&#x0A;- Original element: &apos;com.test.BirthdayParadox.main(String[]).temp&apos;&#x0D;&#x0A;- Renamed element: &apos;temp&apos;&#x0D;&#x0A;- Update references to refactored element" description="Rename local variable &apos;temp&apos;" id="org.eclipse.jdt.ui.rename.local.variable" input="/src&lt;com.test{BirthdayParadox.java[BirthdayParadox~main~\[QString;@temp!458!477!462!465!I!0!false" name="bdayDate" references="true" stamp="1511871072382" version="1.0"/>
-</session>

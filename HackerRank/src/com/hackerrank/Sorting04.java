@@ -1,6 +1,8 @@
 package com.hackerrank;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Scanner;
 
 /*
@@ -15,8 +17,29 @@ import java.util.Scanner;
 public class Sorting04 {
 
     static int activityNotifications(int[] expenditure, int d) {
+		ArrayList<Integer> list = new ArrayList<>();
+		for(int i=0;i<expenditure.length;i++)
+			list.add(expenditure[i]);
 		
-    	return d;
+		ArrayList<Integer> subList = new ArrayList<>();
+		Double median;
+		int notice=0,k=0;
+		
+		for(int j=d;j<expenditure.length;j++){
+			for(int i=k;i<j;i++)
+				subList.add(list.get(i));
+			Collections.sort(subList);
+			if(d%2==0)
+				median = (subList.get(d/2)+subList.get((d/2)+1))/2.0;
+			else
+				median = subList.get(d/2)/1.0;
+			
+			if(list.get(j)>=median*2)
+				notice++;
+			k++;
+			subList.clear();
+		}
+    	return notice;
     }
 
     private static final Scanner scanner = new Scanner(System.in);
