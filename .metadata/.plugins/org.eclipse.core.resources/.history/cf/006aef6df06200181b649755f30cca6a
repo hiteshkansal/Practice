@@ -1,0 +1,26 @@
+package com.test;
+
+import java.util.concurrent.BlockingQueue;
+
+class Producer implements Runnable {
+	
+	private BlockingQueue<String> queue;
+	
+	Producer(BlockingQueue<String> queue){
+		this.queue = queue;
+	}
+
+	@Override
+	public void run() {
+		// TODO Auto-generated method stub
+		
+	}
+}
+
+public class PhonePeMultithreading {
+
+	public static void main(String arg[]){
+		
+	}
+	
+}

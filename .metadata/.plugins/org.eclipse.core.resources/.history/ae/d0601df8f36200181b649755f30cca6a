@@ -1,0 +1,91 @@
+package com.test;
+
+import java.util.concurrent.BlockingQueue;
+import java.util.concurrent.CountDownLatch;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.LinkedBlockingQueue;
+
+import org.json.simple.JSONObject;
+
+class Producer implements Runnable {
+
+	private BlockingQueue<JSONObject> queue;
+	private static final int TOTAL_MSG = 200;
+
+	Producer(BlockingQueue<JSONObject> queue) {
+		this.queue = queue;
+	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public void run() {
+
+		for (int i = 0; i < TOTAL_MSG; i++) {
+			try {
+				JSONObject obj = new JSONObject();
+				obj.put("message", "Producing message number " + i + 1);
+				obj.put("id", i);
+				System.out.print(obj);
+				System.out.println("Producing element...");
+				queue.put(obj);
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
+		}
+
+	}
+}
+
+class Consumer implements Runnable {
+
+	private BlockingQueue<JSONObject> queue;
+	private CountDownLatch countDownLatch;
+
+	Consumer(BlockingQueue<JSONObject> queue, CountDownLatch count) {
+		this.queue = queue;
+		this.countDownLatch = count;
+	}
+
+	@Override
+	public void run() {
+
+		while (true) {
+			if (countDownLatch.getCount() == 0)
+				break;
+
+			try {
+				JSONObject obj = queue.take();
+				System.out.println("Message Id: " + obj.get("id"));
+				System.out.println("Message Content: " + obj.get("message"));
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			} finally {
+				countDownLatch.countDown();
+			}
+		}
+	}
+}
+
+public class PhonePeMultithreading {
+
+	public static void main(String arg[]) {
+
+		BlockingQueue<JSONObject> queue = new LinkedBlockingQueue<>();
+
+		Producer producer = new Producer(queue);
+		new Thread(producer).start();
+		CountDownLatch countDownLatch = new CountDownLatch(Producer.TOTAL_MSG);
+
+		// Here we have the consumer. We have 5 consumer
+		Consumer tokenConsumer = new Consumer(queue, countDownLatch);
+		ExecutorService executor = Executors.newFixedThreadPool(5);
+		for (int i = 1; i <= 5; i++) {
+			executor.submit(tokenConsumer);
+		}
+		countDownLatch.await();
+		System.out.println("Stopped");
+		executor.shutdown();
+	}
+
+}

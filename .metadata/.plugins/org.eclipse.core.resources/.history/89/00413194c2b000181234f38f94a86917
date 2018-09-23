@@ -1,0 +1,65 @@
+package com.hackerrank;
+
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+/*
+ * You are given an array and you need to find number of tripets of indices (i,j,k) such that the elements at those indices are in geometric progression for a given 
+ * common ratio r and i<j<k.
+
+For example, arr[1,4,16,64] . If r=4, we have [1,4,16] and [4,16,64]
+ */
+public class HashMap04 {
+
+	static long countTriplets(List<Long> arr, long r) {
+		
+		Map<Long, Long> map = new HashMap<Long, Long>();
+		long size = arr.size();
+		for(int i=0;i<size;i++){
+			Long key = arr.get(i);
+			Long value = map.get(key);
+			if(value==null)
+				map.put(key, 1L);
+			else
+				map.put(key, ++value);
+		}
+		Long old=0L, ans=0L;
+		if(size>0){
+			old = arr.get(0);
+			Long two = map.get(old*r);
+			Long three = map.get(two*r);
+			if(two!=null && three!=null){
+				old = map.get(0);
+				ans+=(old*two*three);
+			}
+		}
+		for(int i=1;i<size;i++){
+			Long one = arr.get(i);
+			if(old==one)
+				continue;
+			Long two = map.get(one*r);
+			Long three = map.get(two*r);
+			if(two!=null && three!=null){
+				one = map.get(i);
+				ans+=(one*two*three);
+			}
+		}
+		return r;
+    }
+	
+	public static void main(String[] args) throws IOException {
+        
+		List<Long> arr = new ArrayList<Long>();
+		arr.add(1L);
+		arr.add(4L);
+		arr.add(16L);
+		arr.add(64L);
+		int r=4;
+        long ans = countTriplets(arr, r);
+
+       System.out.println(ans);
+    }
+}

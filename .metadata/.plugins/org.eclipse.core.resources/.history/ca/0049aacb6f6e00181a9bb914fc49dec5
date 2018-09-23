@@ -1,0 +1,69 @@
+package com.test;
+
+import java.util.ArrayList;
+import java.util.List;
+
+public class Test {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		String A = "AB";
+		 A = A.toUpperCase();
+	        int value = 0;
+	        for (int i = 0; i < A.length(); i++) {
+	            int delta = (int)( A.charAt(i));// – 64;
+	            delta-=64;
+	            System.out.println("delte: "+delta);
+	            value = value*26+ delta;
+	        }
+	        System.out.println(value);
+		
+	/*	
+		
+		int B=1;
+		List<Integer> A = new ArrayList();
+		A.add(1);
+		
+		int size = A.size();
+		int[] ar = new int[size];
+		for(int i=0;i<size;i++)
+			ar[i]=A.get(i);
+		
+		int low = 0, high = size - 1, mid=0; 
+		boolean flag = false;
+		while (low <= high) {
+			mid = (low+high)/2;
+			if(ar[mid]==B){
+				flag = true;
+				break;
+			}
+			else if(ar[mid]<B)
+				low=mid+1;
+			else
+				high=mid-1;
+		}
+		int count = 1;
+		System.out.println(mid+"  "+flag);
+		if(!flag)
+            return ;
+        else{
+			int t = mid-1;
+			while(t>=0 && ar[t]==B ){
+				count++;
+				t--;
+			}
+			if(t==0 && ar[t]==B)
+				count++;
+			t=mid+1;
+			while(t!=size-1 && ar[t]==B){
+				count++;
+				t++;
+			}
+			if(t==size-1 && ar[t]==B)
+				count++;
+		}
+		System.out.println(count);
+		//return count;
+*/	}
+
+}

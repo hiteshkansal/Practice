@@ -1,0 +1,17 @@
+package com.booking.interviewexperience;
+
+//13. Given a check-in and check-out time of the visitors, find the pick moment of the hotel.
+public class Q13_GuestsPeakTime {
+
+	public static void peaktime(int [] checkin, int [] checkout, int len){
+		
+	}
+	public static void main(String[] args) {
+
+		int checkin[] = {1, 2, 10, 5, 5};
+        int checkout[] = {4, 5, 12, 9, 12};
+        int n = checkout.length;
+        peaktime(checkin, checkout, n);
+	}
+
+}

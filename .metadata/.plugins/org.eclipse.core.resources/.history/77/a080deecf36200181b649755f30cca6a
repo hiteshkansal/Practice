@@ -1,0 +1,73 @@
+package com.test;
+
+import java.util.concurrent.BlockingQueue;
+import java.util.concurrent.CountDownLatch;
+
+import org.json.simple.JSONObject;
+
+class Producer implements Runnable {
+
+	private BlockingQueue<JSONObject> queue;
+	private static final int TOTAL_MSG = 200;
+
+	Producer(BlockingQueue<JSONObject> queue) {
+		this.queue = queue;
+	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public void run() {
+
+		for (int i = 0; i < TOTAL_MSG; i++) {
+			try {
+				JSONObject obj = new JSONObject();
+				obj.put("message", "Producing message number "+i+1);
+				obj.put("id", i);
+				System.out.print(obj);
+				System.out.println("Producing element...");
+				queue.put(obj);
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
+		}
+
+	}
+}
+
+class Consumer implements Runnable {
+
+	private BlockingQueue<JSONObject> queue;
+	private CountDownLatch countDownLatch;
+
+	Consumer(BlockingQueue<JSONObject> queue, CountDownLatch count) {
+		this.queue = queue;
+		this.countDownLatch = count;
+	}
+
+	@Override
+	public void run() {
+
+		while(true){
+			if (countDownLatch.getCount() == 0) 
+				break;
+			
+			try {
+				JSONObject obj = queue.take();
+				System.out.println("Message Id: " + obj.get("id"));
+				System.out.println("Message Content: " + obj.get("message"));
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			} finally {
+				countDownLatch.countDown();
+			}
+		}
+	}
+}
+
+public class PhonePeMultithreading {
+
+	public static void main(String arg[]) {
+
+	}
+
+}

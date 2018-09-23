@@ -1,0 +1,132 @@
+package com.test;
+
+import java.util.ArrayList;
+import java.util.List;
+
+public class Test {
+
+	public static int gcd(int A, int B) {
+        if(A==B )
+            return A;
+        if(A==0||B==0)
+			return 0;
+        if(A>B)
+            return gcd(A-B,B);
+        else
+            return gcd(A,B-A);
+    }
+	
+	static int rotatedSearch(int arr[], int l, int h, int key)
+    {
+        if (l > h) 
+            return -1;
+       
+        int mid = (l+h)/2;
+        if (arr[mid] == key)
+            return mid;
+       
+        if (arr[l] <= arr[mid])
+        {
+            if (key >= arr[l] && key <= arr[mid])
+            	return rotatedSearch(arr, l, mid-1, key);
+            else
+            	return rotatedSearch(arr, mid+1, h, key);
+        }
+       
+        if (key >= arr[mid] && key <= arr[h])
+            return rotatedSearch(arr, mid+1, h, key);
+        else
+        	return rotatedSearch(arr, l, mid-1, key);
+    }
+	
+	
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		/*int A = 943566;
+		  StringBuilder s = new StringBuilder();
+	        
+	        while(A>0){
+	            int rem = A%26;
+	            if(rem==0){
+	                s.append("Z");
+	                A = (A/26)-1;
+	            }
+	            else{
+	                s.append((char)((rem-1)+'A'));
+	                A = A/26;
+	            }
+	        }
+	        System.out.println(s.reverse().toString());
+		*/
+	   // System.out.println(gcd(6,9));   
+            
+		/*String A = "AB";
+		 A = A.toUpperCase();
+	        int value = 0;
+	        for (int i = 0; i < A.length(); i++) {
+	            int delta = (int)( A.charAt(i));// – 64;
+	            delta-=64;
+	            System.out.println("delte: "+delta);
+	            value = value*26+ delta;
+	        }
+	        System.out.println(value);*/
+		
+		
+		
+		int B=3;
+		List<Integer> A = new ArrayList();
+		A.add(4);
+		A.add(5);
+		/*A.add(6);
+		A.add(7);
+		A.add(1);
+		A.add(2);
+		A.add(3);*/
+		
+		int size = A.size();
+		int[] ar = {101, 103, 106, 109, 158, 164, 182, 187, 202, 205, 2, 3, 32, 57, 69, 74, 81, 99, 100 };
+		/*for(int i=0;i<size;i++)
+			ar[i]=A.get(i);
+		*/
+		int low = 0, high = ar.length - 1, mid=0; 
+		
+		System.out.println(rotatedSearch(ar, low, high, 202));
+		/*boolean flag = false;
+		while (low <= high) {
+			mid = (low+high)/2;
+			if(ar[mid]==B){
+				flag = true;
+				break;
+			}
+			else if(ar[mid]<B){
+				low=mid+1;
+			}
+			else{
+				high=mid-1;
+			}
+		}
+		int count = 1;
+		System.out.println(mid+"  "+flag);
+		if(!flag)
+            return ;
+        else{
+			int t = mid-1;
+			while(t>=0 && ar[t]==B ){
+				count++;
+				t--;
+			}
+			if(t==0 && ar[t]==B)
+				count++;
+			t=mid+1;
+			while(t!=size-1 && ar[t]==B){
+				count++;
+				t++;
+			}
+			if(t==size-1 && ar[t]==B)
+				count++;
+		}
+		System.out.println(count);*/
+		//return count;
+	}
+
+}

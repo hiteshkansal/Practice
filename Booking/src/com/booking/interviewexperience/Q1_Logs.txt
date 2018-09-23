@@ -1,0 +1,33 @@
+001 <timestamp> BEGIN
+001 <timestamp> fetched from db
+001 <timestamp> some processing ..
+002 <timestamp> BEGIN ..
+002 <timestamp> fetched from db
+001 <timestamp> returned success
+003 <timestamp> BEGIN
+001 <timestamp> END
+003 <timestamp> some work
+002 <timestamp> ERROR
+003 <timestamp> some other work
+004 <timestamp> BEGIN
+004 <timestamp> fetched from db
+004 <timestamp> some processing ..
+005 <timestamp> BEGIN ..
+005 <timestamp> ERROR from db
+004 <timestamp> returned success
+006 <timestamp> BEGIN
+004 <timestamp> ERROR
+005 <timestamp> some work
+005 <timestamp> ERROR
+006 <timestamp> ERROR
+007 <timestamp> BEGIN
+006 <timestamp> fetched from db
+006 <timestamp> ERROR
+008 <timestamp> BEGIN ..
+008 <timestamp> fetched from db
+009 <timestamp> ERROR success
+010 <timestamp> BEGIN
+009 <timestamp> END
+011 <timestamp> ERROR work
+011 <timestamp> ERROR
+012 <timestamp> some other work 

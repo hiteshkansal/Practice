@@ -1,0 +1,28 @@
+package com.hackerrank;
+
+import java.util.HashMap;
+
+public class HashMap01 {
+
+	public static void main(String[] args) {
+
+		String[] magazine ={"give", "me", "one", "grand", "today", "night"}; 
+		String[] note = {"give", "one", "grand", "Today"};
+		
+		HashMap<String, String> map = new HashMap<String, String>();
+		boolean flag = true;
+		for(int i=0;i<magazine.length;i++){
+			map.put(magazine[i], magazine[i]);
+		}
+		for(int i=0;i<note.length;i++){
+			String temp = map.get(note[i]);
+			if(temp==null)
+				flag = false;
+		}
+		if(flag)
+			System.out.println("Yes");
+		else
+			System.out.println("No");
+	}
+
+}
