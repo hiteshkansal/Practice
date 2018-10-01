@@ -3,9 +3,7 @@ package com.hackerrank;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Map.Entry;
 import java.util.Scanner;
-import java.util.Set;
 
 /*
  * Alice decides on an encryption scheme involving two large strings where encryption is dependent on 
