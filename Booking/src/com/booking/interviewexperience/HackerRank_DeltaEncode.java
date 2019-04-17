@@ -3,7 +3,7 @@ package com.booking.interviewexperience;
 import java.util.ArrayList;
 import java.util.List;
 
-public class DeltaEncode {
+public class HackerRank_DeltaEncode {
 
 	static int[] delta_encode(int[] array) {
 

@@ -29,10 +29,12 @@ public class Q13_GuestsPeakTime {
 		System.out.println("Max number of Guests are " + maxGuest+" at "+time+" ");
 	}
 	
+	
+	
 	public static void main(String[] args) {
 
-		int checkin[] = {1, 2, 10, 6, 5};
-        int checkout[] = {4, 5, 12, 9, 12};
+		int checkin[] = {1481122000, 1481122000, 1481122030};
+        int checkout[] = {1481122020, 1481122040, 1481122035};
         int n = checkout.length;
         peaktime(checkin, checkout, n);
 	}
