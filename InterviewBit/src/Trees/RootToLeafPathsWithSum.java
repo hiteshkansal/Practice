@@ -40,6 +40,7 @@ public class RootToLeafPathsWithSum {
 		path.remove(new Integer(root.val));
 		return res;
 	}
+	
 	public void print(ArrayList<ArrayList<Integer>> res){
 		for (int i = 0; i < res.size(); i++) {
 			for (int j = 0; j < res.get(i).size(); j++) {
